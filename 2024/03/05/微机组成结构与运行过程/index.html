@@ -24,7 +24,7 @@
 
   
 
-  <title>Hello World | AstroMuse&#39;s Blog</title>
+  <title>微机组成结构与运行过程 | AstroMuse&#39;s Blog</title>
 
   
 
@@ -34,6 +34,8 @@
 
   <!--mathjax latex数学公式显示支持-->
   
+   
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   
 
   
@@ -101,15 +103,15 @@
     <div class="header-content">
       <div class="post-text layout-block">
         <div class="layout-margin">
-          <h1 class="title-wrap">Hello World</h1>
+          <h1 class="title-wrap">微机组成结构与运行过程</h1>
           <h2 class="title-sub-wrap">
             <strong>AstroMuse</strong>
             <span>发布于</span>
-            <time  class="article-date" datetime="2024-02-28T13:21:38.542Z" itemprop="datePublished">2024-02-28</time>
+            <time  class="article-date" datetime="2024-03-05T15:17:50.000Z" itemprop="datePublished">2024-03-05</time>
           </h2>
           
           
-            <h2 id="/2024/02/28/hello-world/" class="title-sub-wrap leancloud_visitors" data-flag-title="Hello World">
+            <h2 id="/2024/03/05/%E5%BE%AE%E6%9C%BA%E7%BB%84%E6%88%90%E7%BB%93%E6%9E%84%E4%B8%8E%E8%BF%90%E8%A1%8C%E8%BF%87%E7%A8%8B/" class="title-sub-wrap leancloud_visitors" data-flag-title="微机组成结构与运行过程">
               <em>文章访问量</em>
               <i class="leancloud-visitors-count"></i>
             </h2>
@@ -141,19 +143,26 @@
       
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+        <h2 id="组成结构"><a href="#组成结构" class="headerlink" title="组成结构"></a>组成结构</h2><p><img src="/%E5%BE%AE%E6%9C%BA%E7%BB%84%E6%88%90%E7%BB%93%E6%9E%84%E4%B8%8E%E8%BF%90%E8%A1%8C%E8%BF%87%E7%A8%8B%5C1.png" alt="微机结构" title="微机结构"></p>
+<p>其中CPU又称微处理器，包括：累加器、ALU、状态标志寄存器、寄存器阵列、指令寄存器IR、指令译码器ID、定时器和各种控制信号发生电路。</p>
+<p>ALU两进两出，<code>累加器</code>和<code>寄存器阵列</code>入，<code>累加器/寄存器阵列</code>和<code>状态标志寄存器</code>出。其中累加器的字长和微处理器字长一致，有输入输出和移位操作。</p>
+<p>寄存器阵列包括：通用寄存器、地址寄存器AR(常用的有指令指针IP&#x3D;程序计数器PC、变址寄存器SI&#x2F;DI、堆栈指针SP)</p>
+<h2 id="工作过程"><a href="#工作过程" class="headerlink" title="工作过程"></a>工作过程</h2><p>汇编与机器指令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">MOV AL,10       740A</span><br><span class="line">ADD AL,20       3414</span><br><span class="line">MOV [30],AL     531E</span><br><span class="line">HLT             43</span><br></pre></td></tr></table></figure>
+<h3 id="取指周期："><a href="#取指周期：" class="headerlink" title="取指周期："></a>取指周期：</h3><p>上电复位，PC内容为程序起始地址(<code>00H</code>为例),PC送<code>00H</code>入地址寄存器AR，自身数据+1，即此时<code>PC:01H;AR:00H</code>。AR将数据从地址总线送至存储器，存储器内部有地址译码器，选中00H所在的单位(长度一个字节)，</p>
+<p>在已选中的状态下，CPU由于设计特性，其控制电路直接发出存储器读命令，经过控制总线，到存储器的输出控制端。这时存储器将地址<code>00H</code>内的<code>74H</code>从数据总线输入到数据寄存器DR</p>
+<p>CPU由于设计特性，知道首个字节是操作码，发出控制信号，将DR中的数据送入指令译码器，准备进入执行阶段。</p>
+<h3 id="存储器读周期："><a href="#存储器读周期：" class="headerlink" title="存储器读周期："></a>存储器读周期：</h3><p>译码器编译后，CPU发出控制信号，执行该指令的操作，准备执行将后面送入DR的数据送入累加器AL。</p>
+<p>上面PC在更新为<code>01H</code>后，继续将其送入AR，自身加1，同时<code>01H</code>经过地址总线送入存储器，译码后选中<code>01H</code>单元，</p>
+<p>在已选中的状态下，CPU由于设计特性，其控制电路直接发出存储器读命令，经过控制总线，到存储器的输出控制端。这时存储器将地址<code>01H</code>内的<code>0AH</code>从数据总线输入到数据寄存器DR</p>
+<p>CPU在指令译码时，就已经知道这是要送入累加器的操作数，控制电路直接执行该操作.</p>
+<p>至此<code>MOV AL,10</code>的指令完成了。</p>
+<p>细节上存在时序的先后，暂时没有阐述。比如在PC刚变为<code>01H</code>时，CPU的控制电路干的是读取的ROM中<code>00H</code>单元的内容，疑似直到译码完成后才将<code>01H</code>送入AR。</p>
+<p>同时，所谓的CPU设计特性，比如上电后，在选中存储器中<code>00H</code>单元时，CPU控制电路直接发出存储器读命令，这里控制电路细节也没有阐述。</p>
+<p>不过总体来说，大致的程序运作过程已经清晰了。</p>
+<p>ADD指令：在译完指令<code>34H</code>后，CPU会将送入DR的<code>14H</code>和原本存储在AL中的<code>0AH</code>同时送入ALU，执行加法后，结果送至累加器AL。</p>
+<p>MOV [30],AL指令：将指令<code>53H</code>编译后，知道是将AL中的数送入下一个字节所代表的地址的存储单元中。所以当<code>1EH</code>送入DR后，CPU再送其入AR，选中存储器的<code>1EH</code>单元，控制电路发出写指令，将AL中的数写入存储器。</p>
+<p>HLT：<code>43H</code>传入DR后译码后，停止操作。</p>
 
       </section>
 
@@ -161,20 +170,20 @@
       
         <nav class="article-nav">
           
+          
             <div class="article-nav-item layout-padding">
   <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
     
     <div class="card-text">
       
-        <a href="/2024/03/05/%E5%BE%AE%E6%9C%BA%E7%BB%84%E6%88%90%E7%BB%93%E6%9E%84%E4%B8%8E%E8%BF%90%E8%A1%8C%E8%BF%87%E7%A8%8B/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">微机组成结构与运行过程</h2>
+        <a href="/2024/02/28/hello-world/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">Hello World</h2>
         </a>
       
-      <div class="card-text--row">Newer</div>
+      <div class="card-text--row">Older</div>
     </div>
   </article>
 </div>
-          
           
         </nav>
       
@@ -437,6 +446,18 @@
 </section>
 
       
+<section class="widget-toc widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-toc" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M134.50666666 767.46666668H460.8c27.73333333 0 50.24000001 22.50666668 50.24000001 50.23999999v50.13333333c0 27.73333333-22.50666668 50.24000001-50.24000001 50.24000001H134.50666666c-27.73333333 0-50.24000001-22.50666668-50.23999999-50.24000001v-50.13333333c0.10666668-27.73333333 22.50666668-50.24000001 50.24000001-50.24000001zM84.37333332 541.65333333h326.18666669c27.73333333 0 50.24000001 22.39999999 50.23999999 50.13333334v50.24000001c0 27.73333333-22.50666668 50.24000001-50.24000002 50.23999999H84.37333332c-27.73333333 0-50.24000001-22.50666668-50.23999999-50.23999999v-50.24000001c0-27.73333333 22.50666668-50.13333334 50.24000001-50.13333334zM134.50666666 315.83999999H460.8c27.73333333 0 50.24000001 22.50666668 50.24000001 50.24000001v50.24000001c0 27.73333333-22.50666668 50.13333334-50.24000001 50.13333333H134.50666666c-27.73333333 0-50.24000001-22.39999999-50.23999999-50.13333333v-50.24000001c0.10666668-27.84000001 22.50666668-50.24000001 50.24000001-50.23999999zM209.81333332 89.91999999h326.18666671c27.73333333 0 50.24000001 22.39999999 50.23999997 50.13333335v50.23999999c0 27.73333333-22.50666668 50.24000001-50.24000001 50.24000001H209.81333332c-27.73333333 0-50.24000001-22.50666668-50.23999999-50.24000001v-50.24000001c0-27.73333333 22.50666668-50.13333334 50.24000001-50.13333333zM692.05333333 623.36l274.66666669 176.00000002c23.36000001 14.93333333 30.08 45.97333334 15.14666666 69.33333332L954.77333334 910.93333333c-14.93333333 23.25333334-45.97333334 30.08-69.33333335 15.14666667l-274.66666666-176c-23.36000001-14.93333333-30.08-45.97333334-15.14666667-69.33333333l27.09333334-42.24000001c14.93333333-23.36000001 46.08000001-30.08 69.33333333-15.14666666z" fill="currentColor"></path>
+</svg>
+    <span>TOC</span>
+  </div>
+  <div class="widget-body">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%84%E6%88%90%E7%BB%93%E6%9E%84"><span class="toc-number">1.</span> <span class="toc-text">组成结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E8%BF%87%E7%A8%8B"><span class="toc-number">2.</span> <span class="toc-text">工作过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%96%E6%8C%87%E5%91%A8%E6%9C%9F%EF%BC%9A"><span class="toc-number">2.1.</span> <span class="toc-text">取指周期：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E5%99%A8%E8%AF%BB%E5%91%A8%E6%9C%9F%EF%BC%9A"><span class="toc-number">2.2.</span> <span class="toc-text">存储器读周期：</span></a></li></ol></li></ol>
+  </div>
+</section>
+
 
       
 <section class="widet-notice widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
