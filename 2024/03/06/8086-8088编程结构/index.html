@@ -24,7 +24,7 @@
 
   
 
-  <title>微机组成结构与运行过程 | AstroMuse&#39;s Blog</title>
+  <title>8086/8088编程结构 | AstroMuse&#39;s Blog</title>
 
   
 
@@ -218,20 +218,20 @@ mjx-container[display="true"] + br {
     <div class="header-content">
       <div class="post-text layout-block">
         <div class="layout-margin">
-          <h1 class="title-wrap">微机组成结构与运行过程</h1>
+          <h1 class="title-wrap">8086/8088编程结构</h1>
           <h2 class="title-sub-wrap">
             <strong>AstroMuse</strong>
             <span>发布于</span>
-            <time  class="article-date" datetime="2024-03-05T15:17:50.000Z" itemprop="datePublished">2024-03-05</time>
+            <time  class="article-date" datetime="2024-03-06T13:40:26.000Z" itemprop="datePublished">2024-03-06</time>
           </h2>
           
             <h2 class="last-time">
               <span>最后更新于</span>
-              <time  class="article-updated" datetime="2024-03-06T13:52:12.381Z" itemprop="dateUpdated">2024-03-06</time>
+              <time  class="article-updated" datetime="2024-03-12T13:49:52.244Z" itemprop="dateUpdated">2024-03-12</time>
             </h2>
           
           
-            <h2 id="/2024/03/05/%E5%BE%AE%E6%9C%BA%E7%BB%84%E6%88%90%E7%BB%93%E6%9E%84%E4%B8%8E%E8%BF%90%E8%A1%8C%E8%BF%87%E7%A8%8B/" class="title-sub-wrap leancloud_visitors" data-flag-title="微机组成结构与运行过程">
+            <h2 id="/2024/03/06/8086-8088%E7%BC%96%E7%A8%8B%E7%BB%93%E6%9E%84/" class="title-sub-wrap leancloud_visitors" data-flag-title="8086/8088编程结构">
               <em>文章访问量</em>
               <i class="leancloud-visitors-count"></i>
             </h2>
@@ -263,31 +263,62 @@ mjx-container[display="true"] + br {
       
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
-        <h2 id="组成结构">组成结构</h2>
-<p><img src="https://github.com/AstroMuse/AstroMuse.github.io/blob/main/2024/03/05/%E5%BE%AE%E6%9C%BA%E7%BB%84%E6%88%90%E7%BB%93%E6%9E%84%E4%B8%8E%E8%BF%90%E8%A1%8C%E8%BF%87%E7%A8%8B/1.png?raw=true" alt="微机结构" title="微机结构"></p>
-<p>其中CPU又称微处理器，包括：累加器、ALU、状态标志寄存器、寄存器阵列、指令寄存器IR、指令译码器ID、定时器和各种控制信号发生电路。</p>
-<p>ALU两进两出，<code>累加器</code>和<code>寄存器阵列</code>入，<code>累加器/寄存器阵列</code>和<code>状态标志寄存器</code>出。其中累加器的字长和微处理器字长一致，有输入输出和移位操作。</p>
-<p>寄存器阵列包括：通用寄存器、地址寄存器AR(常用的有指令指针IP=程序计数器PC、变址寄存器SI/DI、堆栈指针SP)</p>
-<h2 id="工作过程">工作过程</h2>
-<p>汇编与机器码：</p>
-<figure class="highlight arm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs arm"><span class="hljs-keyword">MOV</span> AL,<span class="hljs-number">10</span>       <span class="hljs-number">740</span>A<br><span class="hljs-keyword">ADD</span> AL,<span class="hljs-number">20</span>       <span class="hljs-number">3414</span><br><span class="hljs-keyword">MOV</span> [<span class="hljs-number">30</span>],AL     <span class="hljs-number">531</span>E<br><span class="hljs-symbol">HLT</span>             <span class="hljs-number">43</span><br></code></pre></td></tr></table></figure>
-<h3 id="取指周期：">取指周期：</h3>
-<p>上电复位，PC内容为程序起始地址(<code>00H</code>为例),PC送<code>00H</code>入地址寄存器AR，自身数据+1，即此时<code>PC:01H;AR:00H</code>。AR将数据从地址总线送至存储器，存储器内部有地址译码器，选中00H所在的单位(长度一个字节)，</p>
-<p>在已选中的状态下，CPU由于设计特性，其控制电路直接发出存储器读命令，经过控制总线，到存储器的输出控制端。这时存储器将地址<code>00H</code>内的<code>74H</code>从数据总线输入到数据寄存器DR</p>
-<p>CPU由于设计特性，知道首个字节是操作码，发出控制信号，将DR中的数据送入指令译码器，准备进入执行阶段。</p>
-<h3 id="存储器读周期：">存储器读周期：</h3>
-<p>译码器编译后，CPU发出控制信号，执行该指令的操作，准备执行将后面送入DR的数据送入累加器AL。</p>
-<p>上面PC在更新为<code>01H</code>后，继续将其送入AR，自身加1，同时<code>01H</code>经过地址总线送入存储器，译码后选中<code>01H</code>单元，</p>
-<p>在已选中的状态下，CPU由于设计特性，其控制电路直接发出存储器读命令，经过控制总线，到存储器的输出控制端。这时存储器将地址<code>01H</code>内的<code>0AH</code>从数据总线输入到数据寄存器DR</p>
-<p>CPU在指令译码时，就已经知道这是要送入累加器的操作数，控制电路直接执行该操作.</p>
-<p>至此<code>MOV AL,10</code>的指令完成了。</p>
-<p>虽然完整流程阐明了，但细节中时序的先后，其实没有阐述。比如在PC刚变为<code>01H</code>时，CPU的控制电路干的是读取的ROM中<code>00H</code>单元的内容，疑似直到将指令译码完成后，才接着0将PC中的<code>01H</code>送入AR，这一段时序上的间隔和第一次并不完全一样。</p>
-<p>同时，提到的所谓CPU的设计特性，比如上电后，在选中存储器中<code>00H</code>单元时，CPU的控制电路如何分辨出要发出存储器读命令，细节也没有阐述。(个人一点猜想就是，除非明确知道是写入指令，默认状态下，只要选中了存储器中某一部分单元，执行的都是读指令)</p>
-<p>不过总体来说，一个的程序运作过程已经清晰了。</p>
-<p>ADD指令：在译完指令<code>34H</code>后，CPU会将送入DR的<code>14H</code>和原本存储在AL中的<code>0AH</code>同时送入ALU，执行加法后，结果送至累加器AL。</p>
-<p>MOV [30],AL指令：将指令<code>53H</code>编译后，知道是将AL中的数送入下一个字节所代表的地址的存储单元中。所以当<code>1EH</code>送入DR后，CPU再送其入AR，选中存储器的<code>1EH</code>单元，控制电路发出写指令，将AL中的数写入存储器。</p>
-<p>HLT：<code>43H</code>传入DR后译码后，停止操作。</p>
-<p>上面的过程只是微机运行程序的一种思路，并不明确说明是哪一个版本的微机。</p>
+        <blockquote>
+<p>这章及以后的内容全部以8086/8088为对象探讨微机</p>
+</blockquote>
+<h2 id="编程结构">编程结构</h2>
+<p>编程结构指从程序员的角度来看的处理器结构。主要分为两部分：总线接口部件BIU(Bus Interface Unit)和执行部件EU(Execution Unit).</p>
+<p>EU包括ALU、通用寄存器、状态寄存器。执行的是16位的算术与逻辑运算。</p>
+<p>通用寄存器即数据寄存器，包括4个16位寄存器AX、BX、CX、DX，其中AX是累加器，每一个均可分为AH和AL两个8位寄存器。</p>
+<p>状态寄存器即标志寄存器PSW(Program Status Word)，16位取其中9位作标志位。</p>
+<p>8086处理器的状态寄存器通常指的是FLAGS寄存器，它包含了一些标志位，用于存储处理器的状态信息。这些标志位包括：</p>
+<ol>
+<li class="lvl-3">
+<p>CF（Carry Flag）：进位标志，若算术运算中最高位发生了进位或借位，置1。</p>
+</li>
+<li class="lvl-3">
+<p>PF（Parity Flag）：奇偶校验标志，若结果的低8位中包含的1的个数是偶数，置1。</p>
+</li>
+<li class="lvl-3">
+<p>AF（Auxiliary Carry Flag）：辅助进位标志，若位3向位4进位或反之，置1，用于辅助BCD运算。</p>
+<blockquote>
+<p>BCD运算其实就是指对BCD编码后的数进行运算，BCD编码指将十进制每一位数都用四位二进制表示，15的二进制表达是1111，BCD编码是00010101。BCD运算中当每个十进制位上结果大于9，需要减去10，并向高位进1，辅助的标志位就是AF。</p>
+</blockquote>
+</li>
+<li class="lvl-3">
+<p>ZF（Zero Flag）：零标志，若运算结果各位为零，置1。</p>
+</li>
+<li class="lvl-3">
+<p>SF（Sign Flag）：符号标志，用于指示运算结果的符号，最高位为1表示结果为负数，此时置1；最高位为0表示结果为非负数，此时清0。</p>
+</li>
+<li class="lvl-3">
+<p>TF（Trap Flag）：单步执行标志/陷阱标志位，用于进行调试，当TF为1时，处理器以单步模式执行。(原理是每执行一条指令，进入陷阱中断，执行陷阱中断处理程序)</p>
+</li>
+<li class="lvl-3">
+<p>IF（Interrupt Flag）：中断允许标志，用于控制中断的使能和禁止。置1，处理器可以响应可屏蔽中断。</p>
+</li>
+<li class="lvl-3">
+<p>DF（Direction Flag）：方向标志位，用于控制字符串操作的方向，1表示向低地址方向，即自动减量指令；0表示向高地址方向。</p>
+</li>
+<li class="lvl-3">
+<p>OF（Overflow Flag）：溢出标志，用于指示有无溢出发生。算术运算中带符号的运算超出8位或16位带符号数(<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.186ex;" xmlns="http://www.w3.org/2000/svg" width="13.325ex" height="1.715ex" role="img" focusable="false" viewBox="0 -676 5889.6 758"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><path data-c="2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"></path></g><g data-mml-node="mn" transform="translate(778,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" transform="translate(500,0)"></path><path data-c="37" d="M55 458Q56 460 72 567L88 674Q88 676 108 676H128V672Q128 662 143 655T195 646T364 644H485V605L417 512Q408 500 387 472T360 435T339 403T319 367T305 330T292 284T284 230T278 162T275 80Q275 66 275 52T274 28V19Q270 2 255 -10T221 -22Q210 -22 200 -19T179 0T168 40Q168 198 265 368Q285 400 349 489L395 552H302Q128 552 119 546Q113 543 108 522T98 479L95 458V455H55V458Z" transform="translate(1000,0)"></path></g><g data-mml-node="mo" transform="translate(2555.8,0)"><path data-c="223C" d="M55 166Q55 241 101 304T222 367Q260 367 296 349T362 304T421 252T484 208T554 189Q616 189 655 236T694 338Q694 350 698 358T708 367Q722 367 722 334Q722 260 677 197T562 134H554Q517 134 481 152T414 196T355 248T292 293T223 311Q179 311 145 286Q109 257 96 218T80 156T69 133Q55 133 55 166Z"></path></g><g data-mml-node="mo" transform="translate(3611.6,0)"><path data-c="2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z"></path></g><g data-mml-node="mn" transform="translate(4389.6,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" transform="translate(500,0)"></path><path data-c="37" d="M55 458Q56 460 72 567L88 674Q88 676 108 676H128V672Q128 662 143 655T195 646T364 644H485V605L417 512Q408 500 387 472T360 435T339 403T319 367T305 330T292 284T284 230T278 162T275 80Q275 66 275 52T274 28V19Q270 2 255 -10T221 -22Q210 -22 200 -19T179 0T168 40Q168 198 265 368Q285 400 349 489L395 552H302Q128 552 119 546Q113 543 108 522T98 479L95 458V455H55V458Z" transform="translate(1000,0)"></path></g></g></g></svg></mjx-container> 或 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.186ex;" xmlns="http://www.w3.org/2000/svg" width="12.375ex" height="2.072ex" role="img" focusable="false" viewBox="0 -833.9 5469.8 915.9"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><path data-c="2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"></path></g><g data-mml-node="msup" transform="translate(778,0)"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g><g data-mml-node="TeXAtom" transform="translate(533,363) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mn"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path data-c="35" d="M164 157Q164 133 148 117T109 101H102Q148 22 224 22Q294 22 326 82Q345 115 345 210Q345 313 318 349Q292 382 260 382H254Q176 382 136 314Q132 307 129 306T114 304Q97 304 95 310Q93 314 93 485V614Q93 664 98 664Q100 666 102 666Q103 666 123 658T178 642T253 634Q324 634 389 662Q397 666 402 666Q410 666 410 648V635Q328 538 205 538Q174 538 149 544L139 546V374Q158 388 169 396T205 412T256 420Q337 420 393 355T449 201Q449 109 385 44T229 -22Q148 -22 99 32T50 154Q50 178 61 192T84 210T107 214Q132 214 148 197T164 157Z" transform="translate(500,0)"></path></g></g></g><g data-mml-node="mo" transform="translate(2345.9,0)"><path data-c="223C" d="M55 166Q55 241 101 304T222 367Q260 367 296 349T362 304T421 252T484 208T554 189Q616 189 655 236T694 338Q694 350 698 358T708 367Q722 367 722 334Q722 260 677 197T562 134H554Q517 134 481 152T414 196T355 248T292 293T223 311Q179 311 145 286Q109 257 96 218T80 156T69 133Q55 133 55 166Z"></path></g><g data-mml-node="mo" transform="translate(3401.7,0)"><path data-c="2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z"></path></g><g data-mml-node="msup" transform="translate(4179.7,0)"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g><g data-mml-node="TeXAtom" transform="translate(533,363) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mn"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path data-c="35" d="M164 157Q164 133 148 117T109 101H102Q148 22 224 22Q294 22 326 82Q345 115 345 210Q345 313 318 349Q292 382 260 382H254Q176 382 136 314Q132 307 129 306T114 304Q97 304 95 310Q93 314 93 485V614Q93 664 98 664Q100 666 102 666Q103 666 123 658T178 642T253 634Q324 634 389 662Q397 666 402 666Q410 666 410 648V635Q328 538 205 538Q174 538 149 544L139 546V374Q158 388 169 396T205 412T256 420Q337 420 393 355T449 201Q449 109 385 44T229 -22Q148 -22 99 32T50 154Q50 178 61 192T84 210T107 214Q132 214 148 197T164 157Z" transform="translate(500,0)"></path></g></g></g></g></g></svg></mjx-container>)，置1。</p>
+</li>
+</ol>
+<p>其中6、7、8标志位是控制标志，其他的是状态标志.</p>
+<p>这些标志位可以被处理器的指令设置、清除或检查，用于判断运算的结果或控制程序的流程。</p>
+<blockquote>
+<p>例：执行5439H+456AH(有符号)的过程中，状态标志结果如下：CF=0; PF=1; AF=1；ZF=0;SF=1; OF=1.</p>
+</blockquote>
+<p>BIU负责存储器与I/O接口之间传送数据，包括段寄存器、指针寄存器、地址加法器和指令队列缓冲器。</p>
+<p>段寄存器包括代码段寄存器CS(code segment)、堆栈段寄存器SS(stack segment)、数据段寄存器DS(data segment)、附加段寄存器ES(extra segment).</p>
+<blockquote>
+<p>ES一般和DS功能类似</p>
+</blockquote>
+<p>指针寄存器包括指令指针寄存器IP(instruction pointer)、基地址指针寄存器BP(base pointer)、堆栈指针寄存器SP(stack pointer).</p>
+<blockquote>
+<p>基地址指针寄存器（BP）主要用于指向堆栈帧中的局部变量和函数参数。它通常与堆栈指针寄存器（SP）一起使用，在函数调用和局部变量访问时发挥重要作用。</p>
+</blockquote>
+<p>变址寄存器包括源索引寄存器SI(source index)、目标索引寄存器DI(destination index).大多数时候用于字符串和块传输操作，前者用于指示目标数据(被写入修改或填充)的偏移地址，后者用于指示源数据(被读取复制或提取)的偏移地址。</p>
 
       </section>
 
@@ -295,28 +326,14 @@ mjx-container[display="true"] + br {
       
         <nav class="article-nav">
           
-            <div class="article-nav-item layout-padding">
-  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
-    
-    <div class="card-text">
-      
-        <a href="/2024/03/06/8086-8088%E7%BC%96%E7%A8%8B%E7%BB%93%E6%9E%84/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">8086/8088编程结构</h2>
-        </a>
-      
-      <div class="card-text--row">Newer</div>
-    </div>
-  </article>
-</div>
-          
           
             <div class="article-nav-item layout-padding">
   <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
     
     <div class="card-text">
       
-        <a href="/2024/02/28/hello-world/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">Hello World</h2>
+        <a href="/2024/03/05/%E5%BE%AE%E6%9C%BA%E7%BB%84%E6%88%90%E7%BB%93%E6%9E%84%E4%B8%8E%E8%BF%90%E8%A1%8C%E8%BF%87%E7%A8%8B/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">微机组成结构与运行过程</h2>
         </a>
       
       <div class="card-text--row">Older</div>
@@ -593,7 +610,7 @@ mjx-container[display="true"] + br {
     <span>TOC</span>
   </div>
   <div class="widget-body">
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%84%E6%88%90%E7%BB%93%E6%9E%84"><span class="toc-number">1.</span> <span class="toc-text">组成结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E8%BF%87%E7%A8%8B"><span class="toc-number">2.</span> <span class="toc-text">工作过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%96%E6%8C%87%E5%91%A8%E6%9C%9F%EF%BC%9A"><span class="toc-number">2.1.</span> <span class="toc-text">取指周期：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E5%99%A8%E8%AF%BB%E5%91%A8%E6%9C%9F%EF%BC%9A"><span class="toc-number">2.2.</span> <span class="toc-text">存储器读周期：</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E7%A8%8B%E7%BB%93%E6%9E%84"><span class="toc-number">1.</span> <span class="toc-text">编程结构</span></a></li></ol>
   </div>
 </section>
 
