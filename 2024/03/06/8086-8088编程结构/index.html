@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN,en,default">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,9 +11,11 @@
   <meta name="generator" content="Hexo 7.1.1">
 
   
-    <meta name="description" content="technology&#39;Mathmatics">
+    <meta name="description" content="technology&#39;Mathmatics&#39;Robotics">
   
 
+  
+    <meta name="keywords" content="technology&#39;Mathmatics&#39;Robotics&#39;AstroMuse">
   
 
   
@@ -24,7 +26,7 @@
 
   
 
-  <title>8086/8088编程结构 | AstroMuse&#39;s Blog</title>
+  <title>8086/8088编程结构 | AstroMuse</title>
 
   
 
@@ -177,7 +179,7 @@ mjx-container[display="true"] + br {
     <div class="navbar-logo">
       <a href="/">
         
-          AstroMuse&#39;s Blog
+          AstroMuse
         
       </a>
     </div>
@@ -227,7 +229,7 @@ mjx-container[display="true"] + br {
           
             <h2 class="last-time">
               <span>最后更新于</span>
-              <time  class="article-updated" datetime="2024-03-12T13:49:52.244Z" itemprop="dateUpdated">2024-03-12</time>
+              <time  class="article-updated" datetime="2024-03-12T14:14:59.390Z" itemprop="dateUpdated">2024-03-12</time>
             </h2>
           
           
@@ -268,6 +270,7 @@ mjx-container[display="true"] + br {
 </blockquote>
 <h2 id="编程结构">编程结构</h2>
 <p>编程结构指从程序员的角度来看的处理器结构。主要分为两部分：总线接口部件BIU(Bus Interface Unit)和执行部件EU(Execution Unit).</p>
+<h3 id="EU">EU</h3>
 <p>EU包括ALU、通用寄存器、状态寄存器。执行的是16位的算术与逻辑运算。</p>
 <p>通用寄存器即数据寄存器，包括4个16位寄存器AX、BX、CX、DX，其中AX是累加器，每一个均可分为AH和AL两个8位寄存器。</p>
 <p>状态寄存器即标志寄存器PSW(Program Status Word)，16位取其中9位作标志位。</p>
@@ -309,6 +312,7 @@ mjx-container[display="true"] + br {
 <blockquote>
 <p>例：执行5439H+456AH(有符号)的过程中，状态标志结果如下：CF=0; PF=1; AF=1；ZF=0;SF=1; OF=1.</p>
 </blockquote>
+<h3 id="BIU">BIU</h3>
 <p>BIU负责存储器与I/O接口之间传送数据，包括段寄存器、指针寄存器、地址加法器和指令队列缓冲器。</p>
 <p>段寄存器包括代码段寄存器CS(code segment)、堆栈段寄存器SS(stack segment)、数据段寄存器DS(data segment)、附加段寄存器ES(extra segment).</p>
 <blockquote>
@@ -325,6 +329,20 @@ mjx-container[display="true"] + br {
       
       
         <nav class="article-nav">
+          
+            <div class="article-nav-item layout-padding">
+  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
+    
+    <div class="card-text">
+      
+        <a href="/2024/03/12/8086%E5%AD%98%E5%82%A8%E5%99%A8%E7%BB%84%E7%BB%87%E5%8F%8A%E5%BC%95%E8%84%9A/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">8086存储器组织及引脚</h2>
+        </a>
+      
+      <div class="card-text--row">Newer</div>
+    </div>
+  </article>
+</div>
           
           
             <div class="article-nav-item layout-padding">
@@ -583,7 +601,7 @@ mjx-container[display="true"] + br {
         <svg class="icon icon-article" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
   <path d="M240.51564747 647.74217627h196.07203239c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806V165.10332731c0-33.18142087-30.16492806-60.32985613-60.32985612-60.32985611H245.04038668C225.43318342 104.7734712 210.35071939 119.85593522 210.35071939 139.46313845V617.57724821c0 16.59071043 13.57421762 30.16492806 30.16492808 30.16492806z m663.62841731-452.47392089v482.63884894c0 33.18142087-27.14843525 60.32985613-60.32985612 60.32985613H180.18579134c-33.18142087 0-60.32985613-27.14843525-60.32985612-60.32985613V195.26825538c-49.77213131 0-90.49478418 40.72265287-90.49478417 90.49478417v452.4739209c0 49.77213131 40.72265287 90.49478418 90.49478417 90.49478417h286.56681657c16.59071043 0 30.16492806 13.57421762 30.16492807 30.16492807s13.57421762 30.16492806 30.16492805 30.16492806h90.49478418c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806s13.57421762-30.16492806 30.16492807-30.16492807h286.56681657c49.77213131 0 90.49478418-40.72265287 90.49478417-90.49478417V285.76303955c0-49.77213131-40.72265287-90.49478418-90.49478417-90.49478417zM587.41232014 647.74217627h191.54729318c19.60720323 0 34.68966726-15.08246403 34.68966729-34.68966727V134.93839925c0-16.59071043-13.57421762-30.16492806-30.16492808-30.16492805H617.57724821c-30.16492806 0-60.32985613 27.14843525-60.32985612 60.32985611v452.4739209c0 16.59071043 13.57421762 30.16492806 30.16492805 30.16492806z" fill="currentColor"></path>
 </svg>
-        <span>3</span>
+        <span>4</span>
       </div>
       <div class="count-box--item">
         <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -610,7 +628,7 @@ mjx-container[display="true"] + br {
     <span>TOC</span>
   </div>
   <div class="widget-body">
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E7%A8%8B%E7%BB%93%E6%9E%84"><span class="toc-number">1.</span> <span class="toc-text">编程结构</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E7%A8%8B%E7%BB%93%E6%9E%84"><span class="toc-number">1.</span> <span class="toc-text">编程结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#EU"><span class="toc-number">1.1.</span> <span class="toc-text">EU</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BIU"><span class="toc-number">1.2.</span> <span class="toc-text">BIU</span></a></li></ol></li></ol>
   </div>
 </section>
 
@@ -624,7 +642,7 @@ mjx-container[display="true"] + br {
     <span>NOTICE</span>
   </div>
   <div class="widget-body">
-    <p>欢迎来茶馆(QQ：526239429)水群~</p>
+    <p>欢迎来茶馆(QQ：720331641)水群~</p>
   </div>
 </section>
 
